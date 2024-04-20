@@ -1,0 +1,765 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="./" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Notes From the Latent Space &#8212; Arthur&#39;s Garden</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.5.1/css/all.min.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.1/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.1/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.1/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=b76e3c8a" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=384b581d" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
+    <link rel="stylesheet" type="text/css" href="_static/custom.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae" />
+  <script src="_static/vendor/fontawesome/6.5.1/js/all.min.js?digest=8d27b9dea8ad943066ae"></script>
+
+    <script src="_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=f281be69"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=efea14e4"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js?v=36754332"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'linear-algebra';</script>
+    <link rel="icon" href="_static/avatar.jpeg"/>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Making Sense of Induction Heads" href="circuits.html" />
+    <link rel="prev" title="👋 Welcome!" href="intro.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a id="pst-skip-link" class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+
+<a class="navbar-brand logo" href="intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/avatar.jpeg" class="logo__image only-light" alt="Arthur's Garden - Home"/>
+    <script>document.write(`<img src="_static/avatar.jpeg" class="logo__image only-dark" alt="Arthur's Garden - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn navbar-btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="intro.html">
+                    👋 Welcome!
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Notes</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Notes From the Latent Space</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Tutorials</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="circuits.html">Making Sense of Induction Heads</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-launch-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Launch interactive content">
+    <i class="fas fa-rocket"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://colab.research.google.com/github/executablebooks/jupyter-book/blob/master/docs/linear-algebra.ipynb" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch onColab"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  
+    <img src="_static/images/logo_colab.png">
+  </span>
+<span class="btn__text-container">Colab</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2Flinear-algebra.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/linear-algebra.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Notes From the Latent Space</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction">Introduction</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#vector-spaces">Vector Spaces</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#basis">Basis</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#span">Span</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#subspaces">Subspaces</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#linear-independence">Linear Independence</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#linear-functions">Linear Functions</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#types-of-mappings">Types of Mappings</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#vectors-operations">Vectors Operations</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#matrices">Matrices</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#matrix-types">Matrix Types</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#zero-matrix">1. Zero Matrix</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#identity-matrix">2. Identity Matrix</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#jacobian-matrix">3. Jacobian Matrix</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hessian-matrix">4. Hessian Matrix</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#eigenvalues">Eigenvalues</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#matrix-operations">Matrix Operations</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#lu-decomposition">1. LU Decomposition</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#singular-value-decomposition">2. Singular Value Decomposition</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cholesky-decomposition">3. Cholesky Decomposition</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pseudoinverse">4. Pseudoinverse</a></li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="notes-from-the-latent-space">
+<h1>Notes From the Latent Space<a class="headerlink" href="#notes-from-the-latent-space" title="Link to this heading">#</a></h1>
+<blockquote>
+<div><p><em>“Talking nonsense is the sole privilege mankind possesses over the other organisms. It’s by talking nonsense that one gets to the truth! I talk nonsense, therefore I am human.”</em></p>
+<p>– Fyodor Dostoevsky</p>
+</div></blockquote>
+<section id="introduction">
+<h2>Introduction<a class="headerlink" href="#introduction" title="Link to this heading">#</a></h2>
+<p>Linear algebra is one of those topics that can at times be quite unintuitive. I find myself having to revisit topics from time to time, and while I would hope that they just stuck with me I sadly don’t have a photographic memory. Here’s an attempt at capturing any tidbit about Linear Algebra I might encounter such that I can quickly read through this blog to refresh my knowledge. First, let’s set some things up:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">torch</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">ModuleNotFoundError</span><span class="g g-Whitespace">                       </span>Traceback (most recent call last)
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">line</span> <span class="mi">1</span>
+<span class="ne">----&gt; </span><span class="mi">1</span> <span class="kn">import</span> <span class="nn">torch</span>
+
+<span class="ne">ModuleNotFoundError</span>: No module named &#39;torch&#39;
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="vector-spaces">
+<h2>Vector Spaces<a class="headerlink" href="#vector-spaces" title="Link to this heading">#</a></h2>
+<p>A vector space is a set of elements for which the following operations are defined, which we will call “vector addition” (which we can define as we please to form a vector space, and does not necessarily have to be standard addition):</p>
+<ol class="arabic simple">
+<li><p>Closure under vector addition</p></li>
+<li><p>Commutation under vector addition <span class="math notranslate nohighlight">\(v + w = w + v\)</span></p></li>
+<li><p>Associative under vector addition <span class="math notranslate nohighlight">\(v + (w + x) = (v + w) + x\)</span></p></li>
+<li><p>There is a zero vector, such that <span class="math notranslate nohighlight">\(0 + v = v + 0\)</span></p></li>
+<li><p>Each vector has an additive inverse, such that <span class="math notranslate nohighlight">\(v + w = 0\)</span> for any <span class="math notranslate nohighlight">\(v\)</span></p></li>
+</ol>
+<p>There must also be scalar addition such that:</p>
+<ol class="arabic simple">
+<li><p>Distributive <span class="math notranslate nohighlight">\(k(v + w) = kv + kw\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\((k_0 + k_1)v = k_{0}v + k_{1}v\)</span></p></li>
+</ol>
+<p>The more general term for a vector space is a <a class="reference external" href="https://en.wikipedia.org/wiki/Field_(mathematics)">Field</a></p>
+<section id="basis">
+<h3>Basis<a class="headerlink" href="#basis" title="Link to this heading">#</a></h3>
+<p>A basis is a set of vectors such that every vector in the vector space can be expressed as a sum of the basis vectors. These vectors must Span a vector space <code class="docutils literal notranslate"><span class="pre">V</span></code></p>
+</section>
+<section id="span">
+<h3>Span<a class="headerlink" href="#span" title="Link to this heading">#</a></h3>
+<p>The set of vectors <code class="docutils literal notranslate"><span class="pre">W</span></code> that can be formed from some other set of vectors <code class="docutils literal notranslate"><span class="pre">V</span></code> by a scaled sum of the vectors in <code class="docutils literal notranslate"><span class="pre">V</span></code> is called the span of <code class="docutils literal notranslate"><span class="pre">V</span></code>. Where a scaled sum is <span class="math notranslate nohighlight">\(k_0V_0 + k_1V_1 + ...\)</span> in <span class="math notranslate nohighlight">\(W\)</span></p>
+</section>
+<section id="subspaces">
+<h3>Subspaces<a class="headerlink" href="#subspaces" title="Link to this heading">#</a></h3>
+<p>A linear subspace <code class="docutils literal notranslate"><span class="pre">S</span></code> of a vector space <code class="docutils literal notranslate"><span class="pre">V</span></code> is a subset of <code class="docutils literal notranslate"><span class="pre">V</span></code> such that the linear subspace remains closed under:</p>
+<ol class="arabic simple">
+<li><p>Vector Addition.</p>
+<ul class="simple">
+<li><p>The vector addition operation for <code class="docutils literal notranslate"><span class="pre">V</span></code> applied on any vector in <code class="docutils literal notranslate"><span class="pre">S</span></code> must ensure that and vector in <code class="docutils literal notranslate"><span class="pre">S</span></code> remains in <code class="docutils literal notranslate"><span class="pre">S</span></code></p></li>
+</ul>
+</li>
+<li><p>Scalar Multiplication</p>
+<ul class="simple">
+<li><p>Any vector in <code class="docutils literal notranslate"><span class="pre">S</span></code> scalar multiplied with any scalar must remain in <code class="docutils literal notranslate"><span class="pre">S</span></code></p></li>
+</ul>
+</li>
+</ol>
+</section>
+<section id="linear-independence">
+<h3>Linear Independence<a class="headerlink" href="#linear-independence" title="Link to this heading">#</a></h3>
+<p>A set of vectors <span class="math notranslate nohighlight">\(V = v_0, \dots, v_n\)</span> is said to be linearly independent if the only way to form the 0 vector is by picking 0 for all <span class="math notranslate nohighlight">\(a_0, \dots, a_n\)</span> in the equality <span class="math notranslate nohighlight">\(0 = a_0v_0 + \dots + a_{n}v_n\)</span></p>
+<p>In fact, for a vector space with dimension <code class="docutils literal notranslate"><span class="pre">n</span></code> a linearly independent list of vectors with length <code class="docutils literal notranslate"><span class="pre">n</span></code> will be a basis of the vector space, and linearly independent lists of length <code class="docutils literal notranslate"><span class="pre">&lt;</span> <span class="pre">n</span></code> can be extended to be a basis of the vector space.</p>
+</section>
+<section id="linear-functions">
+<h3>Linear Functions<a class="headerlink" href="#linear-functions" title="Link to this heading">#</a></h3>
+<p>Linear Functions are function from one vector space to another vector space that preserve both properties of vector addition and scalar multiplication.</p>
+<ol class="arabic simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">f(k0v0</span> <span class="pre">+</span> <span class="pre">k1v1)</span> <span class="pre">=</span> <span class="pre">k0f(v0)</span> <span class="pre">+</span> <span class="pre">k1f(v1)</span></code></p></li>
+</ol>
+</section>
+<section id="types-of-mappings">
+<h3>Types of Mappings<a class="headerlink" href="#types-of-mappings" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Linear</p></li>
+<li><p>Affine</p></li>
+</ul>
+</section>
+<section id="vectors-operations">
+<h3>Vectors Operations<a class="headerlink" href="#vectors-operations" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Inner Product: <span class="math notranslate nohighlight">\(\langle v , w\rangle = (v_0, \ldots, v_n) \cdot (w_0, \ldots, w_n) = v_0w_0 + \cdots + v_nw_n\)</span></p></li>
+<li><p>Outer Product: <span class="math notranslate nohighlight">\(u \otimes v = A\)</span> where for vectors of size <span class="math notranslate nohighlight">\(m \times 1\)</span> and <span class="math notranslate nohighlight">\(n \times 1\)</span> the matrix A will be <span class="math notranslate nohighlight">\(m \times n\)</span> with <span class="math notranslate nohighlight">\(A_{ij} = u_iv_j\)</span></p></li>
+<li><p>Cross Product: <span class="math notranslate nohighlight">\(a \times b = \|a\|\|b\|\sin(\theta)n\)</span></p></li>
+</ul>
+</section>
+</section>
+<section id="matrices">
+<h2>Matrices<a class="headerlink" href="#matrices" title="Link to this heading">#</a></h2>
+<p>The most intuitive way to understand matrices is as a linear function over vectors from one domain into another domain, using the standard basis vectors. For example, we could rewrite matrix multiplication as below. NB! We could swap out the basis vectors to be different, which would then also redefine the definition of matrix multiplication. It is merely a strong convention to use <span class="math notranslate nohighlight">\((0, 1)\)</span> and <span class="math notranslate nohighlight">\((1, 0)\)</span> as bases.
+$<span class="math notranslate nohighlight">\(
+\begin{bmatrix}
+   a &amp; b \newline
+   c &amp; d
+\end{bmatrix}
+\begin{bmatrix}
+   x \newline
+   y
+\end{bmatrix}
+ = (ax + by)\begin{bmatrix}
+   1 \newline
+   0
+\end{bmatrix} + (cx + dy)\begin{bmatrix}
+   0 \newline
+   1
+\end{bmatrix}
+\)</span>$</p>
+</section>
+<section id="matrix-types">
+<h2>Matrix Types<a class="headerlink" href="#matrix-types" title="Link to this heading">#</a></h2>
+<section id="zero-matrix">
+<h3>1. Zero Matrix<a class="headerlink" href="#zero-matrix" title="Link to this heading">#</a></h3>
+</section>
+<section id="identity-matrix">
+<h3>2. Identity Matrix<a class="headerlink" href="#identity-matrix" title="Link to this heading">#</a></h3>
+</section>
+<section id="jacobian-matrix">
+<h3>3. Jacobian Matrix<a class="headerlink" href="#jacobian-matrix" title="Link to this heading">#</a></h3>
+<p>The Jacobian Matrix van be computed on a vector-valued function (a function that takes vectors as in/outputs). It represents all the first-order partial derivatives on the function.</p>
+<div class="math notranslate nohighlight">
+\[
+J = \begin{bmatrix} \frac{\partial \bold{f}}{\partial x_1} &amp; \dots &amp; \frac{\partial \bold{f}}{\partial x_n} \end{bmatrix} =
+\begin{bmatrix} 
+\frac{\partial f_1}{\partial x_1} &amp; \dots &amp; \frac{\partial f_1}{\partial x_n} \newline
+\vdots &amp; \ddots &amp; \vdots \newline
+\frac{\partial f_m}{\partial x_1} &amp; \dots &amp; \frac{\partial f_m}{\partial x_n} \end{bmatrix}
+\]</div>
+</section>
+<section id="hessian-matrix">
+<h3>4. Hessian Matrix<a class="headerlink" href="#hessian-matrix" title="Link to this heading">#</a></h3>
+<p>The Hessian Matrix <span class="math notranslate nohighlight">\(\bold{H}_f\)</span> is a square matrix of second order partial dervatives with the format:</p>
+<div class="math notranslate nohighlight">
+\[
+(H_f)_{i,j} = \frac{\partial^{2}f}{\partial x_i \partial x_j }
+\]</div>
+<p>For the Hessian, we must have a scalar-valued function, <span class="math notranslate nohighlight">\(\bold{f} : \R^{n} \to \R\)</span>. It is also possible to compute the Hessian of a vector valued function (<span class="math notranslate nohighlight">\(\bold{f} : \R^{n} \to \R^{m}\)</span>), but in this case we would have an array of <span class="math notranslate nohighlight">\(m\)</span> Hessian matrices such that <span class="math notranslate nohighlight">\(\bold{H}(\bold{f})=(\bold{H}(f_{1}), \dots, \bold{H}(f_{m}))\)</span></p>
+</section>
+</section>
+<section id="eigenvalues">
+<h2>Eigenvalues<a class="headerlink" href="#eigenvalues" title="Link to this heading">#</a></h2>
+</section>
+<section id="matrix-operations">
+<h2>Matrix Operations<a class="headerlink" href="#matrix-operations" title="Link to this heading">#</a></h2>
+<section id="lu-decomposition">
+<h3>1. LU Decomposition<a class="headerlink" href="#lu-decomposition" title="Link to this heading">#</a></h3>
+</section>
+<section id="singular-value-decomposition">
+<h3>2. Singular Value Decomposition<a class="headerlink" href="#singular-value-decomposition" title="Link to this heading">#</a></h3>
+</section>
+<section id="cholesky-decomposition">
+<h3>3. Cholesky Decomposition<a class="headerlink" href="#cholesky-decomposition" title="Link to this heading">#</a></h3>
+</section>
+<section id="pseudoinverse">
+<h3>4. Pseudoinverse<a class="headerlink" href="#pseudoinverse" title="Link to this heading">#</a></h3>
+</section>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="intro.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">👋 Welcome!</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="circuits.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Making Sense of Induction Heads</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction">Introduction</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#vector-spaces">Vector Spaces</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#basis">Basis</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#span">Span</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#subspaces">Subspaces</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#linear-independence">Linear Independence</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#linear-functions">Linear Functions</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#types-of-mappings">Types of Mappings</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#vectors-operations">Vectors Operations</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#matrices">Matrices</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#matrix-types">Matrix Types</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#zero-matrix">1. Zero Matrix</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#identity-matrix">2. Identity Matrix</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#jacobian-matrix">3. Jacobian Matrix</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hessian-matrix">4. Hessian Matrix</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#eigenvalues">Eigenvalues</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#matrix-operations">Matrix Operations</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#lu-decomposition">1. LU Decomposition</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#singular-value-decomposition">2. Singular Value Decomposition</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cholesky-decomposition">3. Cholesky Decomposition</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pseudoinverse">4. Pseudoinverse</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Arthur Stemmer
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
