@@ -61,10 +61,10 @@
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'linear-algebra';</script>
     <link rel="icon" href="_static/avatar.jpeg"/>
-    <link rel="author" title="About these documents" href="about.html" />
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="prev" title="1.1 Finding Previous Token Heads" href="circuits.html" />
+    <link rel="next" title="Making Sense of Induction Heads" href="circuits.html" />
+    <link rel="prev" title="👋 Welcome!" href="intro.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -175,18 +175,17 @@
         <ul class="nav bd-sidenav bd-sidenav__home-link">
             <li class="toctree-l1">
                 <a class="reference internal" href="intro.html">
-                    👋 Welcome to my digital garden!
+                    👋 Welcome!
                 </a>
             </li>
         </ul>
-        <ul class="current nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="about.html">Arthur Stemmer 👋</a></li>
-<li class="toctree-l1"><a class="reference internal" href="circuits.html">1.1 Finding Previous Token Heads</a></li>
-
-
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Notes</span></p>
+<ul class="current nav bd-sidenav">
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">Notes From the Latent Space</a></li>
-
-
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Tutorials</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="circuits.html">Making Sense of Induction Heads</a></li>
 </ul>
 
     </div>
@@ -413,9 +412,7 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Notes From the Latent Space</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#table-of-contents">Table of Contents</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction">Introduction</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction">Introduction</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#vector-spaces">Vector Spaces</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#basis">Basis</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#span">Span</a></li>
@@ -443,9 +440,6 @@ document.write(`
 </ul>
 </li>
 </ul>
-</li>
-</ul>
-
             </nav>
         </div>
     </div>
@@ -462,26 +456,8 @@ document.write(`
 <div><p><em>“Talking nonsense is the sole privilege mankind possesses over the other organisms. It’s by talking nonsense that one gets to the truth! I talk nonsense, therefore I am human.”</em></p>
 <p>– Fyodor Dostoevsky</p>
 </div></blockquote>
-</section>
-<section class="tex2jax_ignore mathjax_ignore" id="table-of-contents">
-<h1>Table of Contents<a class="headerlink" href="#table-of-contents" title="Link to this heading">#</a></h1>
-<ol class="arabic simple">
-<li><p><a class="reference internal" href="#Introduction"><span class="xref myst">Introduction</span></a></p></li>
-<li><p><a class="reference internal" href="#Vector-Spaces"><span class="xref myst">Vector Spaces</span></a></p>
-<ol class="arabic simple">
-<li><p><a class="reference internal" href="#basis"><span class="xref myst">Basis</span></a></p></li>
-<li><p><a class="reference internal" href="#span"><span class="xref myst">Span</span></a></p></li>
-<li><p><a class="reference internal" href="#subspaces"><span class="xref myst">Subspaces</span></a></p></li>
-<li><p><a class="reference internal" href="#linear-independence"><span class="xref myst">Linear Independence</span></a></p></li>
-</ol>
-</li>
-<li><p><a class="reference internal" href="#Matrices"><span class="xref myst">Matrices</span></a></p></li>
-<li><p><a class="reference internal" href="#third-example"><span class="xref myst">Matrix Decompositions</span></a></p></li>
-<li><p><a class="reference internal" href="#determinants"><span class="xref myst">Determinants</span></a></p></li>
-</ol>
-</section>
-<section class="tex2jax_ignore mathjax_ignore" id="introduction">
-<h1>Introduction<a class="headerlink" href="#introduction" title="Link to this heading">#</a></h1>
+<section id="introduction">
+<h2>Introduction<a class="headerlink" href="#introduction" title="Link to this heading">#</a></h2>
 <p>Linear algebra is one of those topics that can at times be quite unintuitive. I find myself having to revisit topics from time to time, and while I would hope that they just stuck with me I sadly don’t have a photographic memory. Here’s an attempt at capturing any tidbit about Linear Algebra I might encounter such that I can quickly read through this blog to refresh my knowledge. First, let’s set some things up:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -500,6 +476,7 @@ document.write(`
 </div>
 </div>
 </div>
+</section>
 <section id="vector-spaces">
 <h2>Vector Spaces<a class="headerlink" href="#vector-spaces" title="Link to this heading">#</a></h2>
 <p>A vector space is a set of elements for which the following operations are defined, which we will call “vector addition” (which we can define as we please to form a vector space, and does not necessarily have to be standard addition):</p>
@@ -670,13 +647,22 @@ J = \begin{bmatrix} \frac{\partial \bold{f}}{\partial x_1} &amp; \dots &amp; \fr
                   
 <div class="prev-next-area">
     <a class="left-prev"
-       href="circuits.html"
+       href="intro.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">1.1 Finding Previous Token Heads</p>
+        <p class="prev-next-title">👋 Welcome!</p>
       </div>
+    </a>
+    <a class="right-next"
+       href="circuits.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Making Sense of Induction Heads</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
     </a>
 </div>
                 </footer>
@@ -694,9 +680,7 @@ J = \begin{bmatrix} \frac{\partial \bold{f}}{\partial x_1} &amp; \dots &amp; \fr
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Notes From the Latent Space</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#table-of-contents">Table of Contents</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction">Introduction</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction">Introduction</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#vector-spaces">Vector Spaces</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#basis">Basis</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#span">Span</a></li>
@@ -724,9 +708,6 @@ J = \begin{bmatrix} \frac{\partial \bold{f}}{\partial x_1} &amp; \dots &amp; \fr
 </ul>
 </li>
 </ul>
-</li>
-</ul>
-
   </nav></div>
 
 </div></div>
