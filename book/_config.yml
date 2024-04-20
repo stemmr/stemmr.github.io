@@ -32,6 +32,7 @@ sphinx:
   config:
     html_static_path: ["_static"]
     html_css_files: ["custom.css"]
+    html_show_copyright: false
 
 # Add GitHub buttons to your book
 # See https://jupyterbook.org/customize/config.html#add-a-link-to-your-repository
