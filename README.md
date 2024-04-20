@@ -9,11 +9,9 @@ This is the repo for the Jupyter Book published at stemmer.github.io! The struct
 On the root of the repo run
 ```
 jupyter-book build book
-ghp-import -n -p -f book/_build/html
+ghp-import -n -p -c stemmr.xyz -f book/_build/html
 ```
 
 ### Adding a new Page
 
 refer to the documentation on the Jupyter Book website: https://jupyterbook.org/en/stable/start/new-file.html
-
-1. Create new 
