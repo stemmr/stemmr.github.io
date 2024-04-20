@@ -1,0 +1,11 @@
+.bd-sidebar-primary::-webkit-scrollbar {
+    width: 0px;
+}
+
+.bd-sidebar-primary::-webkit-scrollbar-thumb {
+    background: transparent;
+}
+
+.bd-sidebar-primary {
+    overflow: hidden;
+}
