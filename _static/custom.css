@@ -9,3 +9,7 @@
 .bd-sidebar-primary {
     overflow: hidden;
 }
+
+footer.bd-footer-content {
+    border-top: 1px solid var(--pst-color-border);
+}
